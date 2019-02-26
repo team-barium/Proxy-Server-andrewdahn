@@ -18,13 +18,6 @@ app.post('/randomid', (req, res) => {
   id = req.body.randomId;
 });
 
-app.get('/suggestions', (req, res) => {
-  axios
-    .get('http://18.216.95.88:3004/suggestions', { params: { id } })
-    .then(({ data }) => res.send(JSON.stringify(data)))
-    .catch(err => res.send(JSON.stringify(err)));
-});
-
 app.get('/search/:keyword', (req, res) => {
   let keyword = req.params.keyword;
   axios
@@ -60,6 +53,13 @@ app.get('/reviews/stats', (req, res) => {
     .get('http://18.191.191.154:3003/reviews/stats', { params: { id } })
     .then(({ data }) => res.send(JSON.stringify(data)))
     .catch(err => res.send(err));
+});
+
+app.get('/suggestions', (req, res) => {
+  axios
+    .get('http://18.216.95.88:3004/suggestions', { params: { id } })
+    .then(({ data }) => res.send(JSON.stringify(data)))
+    .catch(err => res.send(JSON.stringify(err)));
 });
 
 app.listen(port, () => console.log(`Server running on port ${port}`));
